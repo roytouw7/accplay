@@ -11,9 +11,9 @@ export class AppComponent {
   title = 'accplay';
 
   constructor(private motionService: MotionService, private socketService: SocketService) {
-    socketService.getMessage$().subscribe(console.log);
-    setInterval(() => {
-      this.socketService.sendMessage('Hello World');
-    }, 2000);
+    this.motionService.getRotation().subscribe(rotation => {
+      const { alpha, beta, gamma} = rotation;
+      this.socketService.sendMessage(`alpha:${alpha} beta:${beta} gamma:${gamma}`);
+    });
   }
 }
