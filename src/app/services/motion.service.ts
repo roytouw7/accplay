@@ -35,6 +35,6 @@ export class MotionService {
   }
 
   getRotation(): Observable<Rotation> {
-    return this.rotationOutput$.asObservable().pipe(throttleTime(500));
+    return this.rotationOutput$.asObservable().pipe(throttleTime(50));
   }
 }
