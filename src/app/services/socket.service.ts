@@ -14,7 +14,7 @@ export class SocketService implements OnDestroy {
   readonly server = 'https://cryptic-escarpment-20633.herokuapp.com';
   readonly local = 'http://localhost:3000';
   constructor() {
-    this.socket = io(`${this.server}`);
+    this.socket = io(`${this.local}`);
 
     this.socket.on('chat message', (msg: string) => {
       console.log(`received message ${JSON.stringify(msg)}`);
@@ -29,7 +29,7 @@ export class SocketService implements OnDestroy {
   // EMITTER
   sendMessage(msg: Rotation): void {
     console.log('sending');
-    this.socket.emit('rotation', { message: msg });
+    this.socket.emit('chat message', { message: msg });
   }
 
   getMessage$(): Observable<string> {
