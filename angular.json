@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "accplay"
+  "defaultProject": "accplay",
+  "cli": {
+    "analytics": "1f25bd21-145d-4d4e-8b4b-80edef0050e3"
+  }
 }

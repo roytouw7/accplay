@@ -46,3 +46,5 @@ testem.log
 Thumbs.db
 
 .devcontainer
+# Local Netlify folder
+.netlify
