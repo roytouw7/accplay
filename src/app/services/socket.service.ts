@@ -1,6 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import {io} from 'socket.io-client';
+import { Rotation } from './motion.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +27,9 @@ export class SocketService implements OnDestroy {
   }
 
   // EMITTER
-  sendMessage(msg: string): void {
+  sendMessage(msg: Rotation): void {
     console.log('sending');
-    this.socket.emit('chat message', { message: msg });
+    this.socket.emit('rotation', { message: msg });
   }
 
   getMessage$(): Observable<string> {

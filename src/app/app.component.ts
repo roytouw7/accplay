@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private motionService: MotionService, private socketService: SocketService) {
     this.motionService.getRotation().subscribe(rotation => {
       const { alpha, beta, gamma} = rotation;
-      this.socketService.sendMessage(`alpha:${alpha} beta:${beta} gamma:${gamma}`);
+      this.socketService.sendMessage(rotation);
     });
   }
 }
