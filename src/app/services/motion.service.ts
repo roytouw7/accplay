@@ -19,9 +19,19 @@ export class MotionService {
       window.addEventListener('deviceorientation', (event: any) => {
         const { alpha, beta, gamma } = event;
 
-        this.rotationOutput$.next({ alpha, beta, gamma });
+        this.rotationOutput$.next(this.roundRotation({ alpha, beta, gamma }));
       });
     }
+  }
+
+  private roundRotation(rotation: Rotation): Rotation {
+    const round = (scalar: number) => Math.round(scalar);
+
+    return {
+      alpha: round(rotation.alpha),
+      beta: round(rotation.beta),
+      gamma: round(rotation.gamma)
+    };
   }
 
   getRotation(): Observable<Rotation> {

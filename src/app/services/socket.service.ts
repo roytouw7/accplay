@@ -11,9 +11,14 @@ export class SocketService implements OnDestroy {
   private message$ = new Subject<string>();
 
   readonly server = 'https://cryptic-escarpment-20633.herokuapp.com';
-  readonly local = 'http://localhost';
+  readonly local = 'http://localhost:3000';
   constructor() {
-    this.socket = io(`${this.server}`);
+    this.socket = io(`${this.local}`);
+
+    this.socket.on('chat message', (msg: string) => {
+      console.log(`received message ${JSON.stringify(msg)}`);
+    });
+
   }
 
   ngOnDestroy(): void {
@@ -24,13 +29,6 @@ export class SocketService implements OnDestroy {
   sendMessage(msg: string): void {
     console.log('sending');
     this.socket.emit('chat message', { message: msg });
-  }
-
-  // HANDLER
-  onNewMessage(): void {
-    this.socket.on('newMessage', (msg: string) => {
-      this.message$.next(msg);
-    });
   }
 
   getMessage$(): Observable<string> {
